@@ -1,21 +1,14 @@
-var express = require('express');
-var app = express();
-var fs = require('fs');
+var proxy = require('express-http-proxy');
 
-app.set('port', 3000);
-app.use(express.static(__dirname + '/public'));
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+var cors=require("cors")
+var app = require('express')();
+app.use(cors())
 
+app.use(proxy('https://frogar.io/'));
+/*
 app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-
-app.listen(app.get('port'), function() {
-  if (process.env.DYNO) {
-    console.log('This is on Heroku..!!');
-    fs.openSync('/tmp/app-initialized', 'w');
-  }
-  console.log('Node app is running on port', app.get('port'));
+  response.sendFile(__dirname + '/views/index.html');
+});*/
+const listener = app.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
 });
