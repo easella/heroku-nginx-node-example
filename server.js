@@ -4,7 +4,7 @@ var cors=require("cors")
 var app = require('express')();
 app.use(cors())
 
-app.use(proxy('https://frogar.io/'));
+app.use(proxy('https://games.awdrgyjil1234.repl.co/'));
 /*
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
